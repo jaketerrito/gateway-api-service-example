@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-server
+  labels:
+    app: sample-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-server
+  template:
+    metadata:
+      labels:
+        app: sample-server
+    spec:
+      containers:
+      - name: server
+        image: hashicorp/http-echo:1.0
+        ports:
+        - containerPort: 5678
+          name: http-server
